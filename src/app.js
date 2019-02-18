@@ -16,10 +16,13 @@ class App {
     }
   ) {
     this.app = express();
+    this.configure(options);
+  }
+
+  configure(options) {
     this.registerLogger();
     if (options.mode === 'worker') this.setAsWorker();
-    if (options.requestIdentifier === true)
-      this.setRequestIdentifierMiddleware();
+    if (options.requestIdentifier === true) this.setRequestIdentifier();
   }
 
   registerLogger() {
@@ -30,7 +33,7 @@ class App {
     this.app.use(workerIdentifier);
   }
 
-  setRequestIdentifierMiddleware() {
+  setRequestIdentifier() {
     this.app.use(requestIdentifier);
   }
 }
