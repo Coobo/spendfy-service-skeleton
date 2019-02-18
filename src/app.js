@@ -3,8 +3,8 @@ var bodyParser = require('body-parser');
 var compression = require('compression');
 var cors = require('cors');
 var fileUpload = require('express-fileupload');
-var logger = require('./logger');
-var { requestIdentifier, workerIdentifier } = require('./middlewares');
+var middlewares = require('./middlewares');
+
 class App {
   /**
    *
@@ -20,7 +20,9 @@ class App {
    * @param {String[]} [options.cors.allowedHeaders=[]] Sets CORS allowed Headers
    * @param {String[]} [options.cors.allowedMethods=[]] Sets CORS allowed Methods
    * @param {Boolean} [options.enableProxy=true] Enables Trust proxy directives
+   * @param {Boolean} [options.enableLogger=true] Enables the @coobo/spendft-logger default logger for API Express
    * @param {String[]} [options.protectedEnvironments=[]] Sets the protected environments in wich the securities measures will be applied
+   * @returns {Express.Application} The express Application fully configured
    */
   constructor(options = {}) {
     this.setProperties();
@@ -41,12 +43,14 @@ class App {
         enableUpload: true,
         enableCors: true,
         enableProxy: true,
+        enableLogger: true,
         protectedEnvironments: []
       },
       options
     );
     this.app = express();
     this.configure(options);
+    return this.app;
   }
 
   /**
@@ -97,17 +101,33 @@ class App {
     this.defaultProtectedEnvironments = process.env.PROTECTED_ENVIRONMENTS
       ? JSON.parse(process.env.PROTECTED_ENVIRONMENTS)
       : ['production', 'staging'];
+
+    this.middlewares = middlewares;
   }
 
   configure(options) {
-    this.registerLogger();
+    if (options.enableLogger === true) this.registerLogger();
     if (options.mode === 'worker') this.setAsWorker();
     if (options.enableRequestIdentifier === true) this.setRequestIdentifier();
     if (options.enableCors === true) this.setCors(options);
     if (options.enableCompression === true) this.setCompression();
-    if (options.enableUpload) this.setUpload();
-    if (options.enableProxy) this.setProxy();
+    if (options.enableUpload === true) this.setUpload();
+    if (options.enableProxy === true) this.setProxy();
     this.setProtection(options.protectedEnvironments);
+    this.app.use(bodyParser.raw());
+    this.app.use(bodyParser.text());
+    this.app.use(
+      bodyParser.urlencoded({
+        limit: '50mb',
+        extended: true,
+        parameterLimit: 50000
+      })
+    );
+    this.app.use(bodyParser.json({ limit: '50mb' }));
+    this.app.get('/status', (req, res) => {
+      res.status(200);
+      res.send({ ok: true });
+    });
   }
 
   /**
@@ -115,14 +135,8 @@ class App {
    * @param  {...Function} middlewares The middlewares that will be added to the application request handling pipeline
    * @returns {void}
    */
-  addMiddleware(...middlewares) {
-    for (let middleware of middlewares) {
-      if (typeof middleware === 'object' && middleware.length > 0) {
-        middleware.map((middleware) => middlewares.push(middleware));
-        continue;
-      }
-      this.app.use(middleware);
-    }
+  addMiddleware(middleware) {
+    this.app.use(middleware);
   }
 
   /**
@@ -130,6 +144,7 @@ class App {
    * @returns {void}
    */
   registerLogger() {
+    var logger = require('./logger');
     this.addMiddleware(logger);
   }
 
@@ -138,7 +153,7 @@ class App {
    * @returns {void}
    */
   setAsWorker() {
-    this.addMiddleware(workerIdentifier);
+    this.addMiddleware(this.middlewares.workerIdentifier);
   }
 
   /**
@@ -146,7 +161,7 @@ class App {
    * @returns {void}
    */
   setRequestIdentifier() {
-    this.addMiddleware(requestIdentifier);
+    this.addMiddleware(this.middlewares.requestIndentifier);
   }
 
   /**

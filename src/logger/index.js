@@ -1,9 +1,9 @@
 var expressWinston = require('express-winston');
-var { api } = require('@coobo/spendfy-logger');
+var loggers = require('@coobo/spendfy-logger');
 
 const options = {
   development: {
-    winstonInstance: api,
+    winstonInstance: loggers.api,
     expressFormat: false,
     msg: '{{req.url}}: {{res.statusCode}} in {{res.responseTime}}ms ',
     level: (req, res) => {
@@ -26,7 +26,7 @@ const options = {
     })
   },
   staging: {
-    winstonInstance: api,
+    winstonInstance: loggers.api,
     expressFormat: false,
     msg: '{{req.url}}: {{res.statusCode}} in {{res.responseTime}}ms ',
     level: (req, res) => {
@@ -49,7 +49,7 @@ const options = {
     })
   },
   production: {
-    winstonInstance: api,
+    winstonInstance: loggers.api,
     expressFormat: false,
     msg: '{{req.url}}: {{res.statusCode}} in {{res.responseTime}}ms ',
     level: (req, res) => {
@@ -70,6 +70,9 @@ const options = {
       user: req.user ? req.user.id : null,
       WorkerID: res.get('WorkerID') || null
     })
+  },
+  testing: {
+    winstonInstance: null
   }
 };
 

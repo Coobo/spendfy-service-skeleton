@@ -1,5 +1,3 @@
-import uuid from 'uuid/v4';
-
 /**
  * Sets the Worker Identifier into the express response object.
  * @param {Express.Request} req Express Request Object
@@ -8,9 +6,9 @@ import uuid from 'uuid/v4';
  * @function requestIdentifier
  * @middleware
  */
-function requestIdentifier(req, res, next) {
+function workerIdentifier(req, res, next) {
   res.header('WorkerID', process.env.WORKER_ID || 1);
   return next();
 }
 
-module.exports = exports = requestIdentifier;
+module.exports = exports = workerIdentifier;

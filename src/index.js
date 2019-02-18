@@ -1,6 +1,7 @@
 const skeleton = exports;
+const App = require('./app');
 
-skeleton.App = require('./app');
+skeleton.App = App;
 
 skeleton.version = require('./../package.json').version;
 
