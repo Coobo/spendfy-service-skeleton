@@ -55,17 +55,18 @@ class App {
   /**
    *
    * @param {Object} [options={}] The options to configure the application
-   * @param {Number} [options.port=3000]
+   * @param {Number} [options.port=3000] The port for the application listen to
    * @param {String} [options.mode=main] The mode in wich the app should run, can be main or worker
-   * @param {Boolean} [options.enableRequestIdentifier=true]
-   * @param {Boolean} [options.enableCompression=true]
-   * @param {Boolean} [options.enableUpload=true]
-   * @param {Boolean} [options.enableCors=true]
+   * @param {Boolean} [options.enableRequestIdentifier=true] Enables the request identifier header
+   * @param {Boolean} [options.enableCompression=true] Enables the compression middleware
+   * @param {Boolean} [options.enableUpload=true] Enables the express-fileupload middleware
+   * @param {Boolean} [options.enableCors=true] Enables CORS configuration
    * @param {Object} [options.cors]
-   * @param {String|String[]|Boolean} [options.cors.origin=true]
-   * @param {String[]} [options.cors.allowedHeaders=[]]
-   * @param {String[]} [options.cors.allowedMethods=[]]
-   * @param {Boolean} [options.enableProxy=true]
+   * @param {String|String[]|Boolean} [options.cors.origin=true] Sets CORS allowed origins
+   * @param {String[]} [options.cors.allowedHeaders=[]] Sets CORS allowed Headers
+   * @param {String[]} [options.cors.allowedMethods=[]] Sets CORS allowed Methods
+   * @param {Boolean} [options.enableProxy=true] Enables Trust proxy directives
+   * @param {String[]} [options.protectedEnvironments=[]] Sets the protected environments in wich the securities measures will be applied
    */
   constructor(options = {}) {
     // Setting default cors options
