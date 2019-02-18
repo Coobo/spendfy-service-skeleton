@@ -13,4 +13,4 @@ function requestIdentifier(req, res, next) {
   return next();
 }
 
-export default requestIdentifier;
+module.exports = exports = requestIdentifier;

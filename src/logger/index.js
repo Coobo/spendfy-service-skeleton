@@ -1,5 +1,5 @@
-import expressWinston from 'express-winston';
-import { api } from '@coobo/spendfy-logger';
+var expressWinston = require('express-winston');
+var { api } = require('@coobo/spendfy-logger');
 
 const options = {
   development: {
@@ -75,4 +75,4 @@ const options = {
 
 let logger = expressWinston.logger(options[process.env.NODE_ENV]);
 
-export default logger;
+module.exports = exports = logger;

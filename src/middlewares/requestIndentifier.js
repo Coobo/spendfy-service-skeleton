@@ -1,4 +1,4 @@
-import uuid from 'uuid/v4';
+var uuid = require('uuid/v4');
 
 /**
  * Tries to get the RequestID from the incoming request. If none is provided, create one from uuid v4.
@@ -15,4 +15,4 @@ function requestIdentifier(req, res, next) {
   return next();
 }
 
-export default requestIdentifier;
+module.exports = exports = requestIdentifier;

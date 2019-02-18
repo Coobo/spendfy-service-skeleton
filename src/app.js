@@ -1,57 +1,11 @@
-import express from 'express';
-import bodyParser from 'body-parser';
-import compression from 'compression';
-import cors from 'cors';
-import fileUpload from 'express-fileupload';
-import logger from './logger';
-import { requestIdentifier, workerIdentifier } from './middlewares';
-
+var express = require('express');
+var bodyParser = require('body-parser');
+var compression = require('compression');
+var cors = require('cors');
+var fileUpload = require('express-fileupload');
+var logger = require('./logger');
+var { requestIdentifier, workerIdentifier } = require('./middlewares');
 class App {
-  /**
-   * @name app
-   * @type {Express.Application}
-   * @description The actual Express App that will handle requests
-   */
-  app;
-
-  /**
-   * @name defaultAllowedMethods
-   * @type {String[]}
-   * @default ['OPTIONS','GET','POST','PUT','PATCH','DELETE']
-   * @description The app's default allowed HTTP Methods in case CORS is enabled through options (DEFAULTS TO TRUE)
-   */
-  defaultAllowedMethods = process.env.ALLOWED_HTTP_METHODS
-    ? JSON.parse(process.env.ALLOWED_HTTP_METHODS)
-    : ['OPTIONS', 'GET', 'POST', 'PUT', 'PATCH', 'DELETE'];
-
-  /**
-   * @name defaultAllowedHeaders
-   * @type {String[]}
-   * @default ['Origin','X-Requested-With','Content-Type','Accept','Authorization','Needed-Permissions','RequestID']
-   * @description The app's default allowed Headers in case CORS is enabled through options (DEFAULTS TO TRUE)
-   */
-  defaultAllowedHeaders = process.env.ALLOWED_HTTP_HEADERS
-    ? JSON.parse(process.env.ALLOWED_HTTP_HEADERS)
-    : [
-        'Origin',
-        'X-Requested-With',
-        'Content-Type',
-        'Accept',
-        'Authorization',
-        'Needed-Permissions',
-        'RequestID'
-      ];
-
-  /**
-   * @name defaultProtectedEnvironments
-   * @type {String[]}
-   * @default ['production','staging']
-   * @description The app's default environments in which secure precautions should be taken
-   */
-  defaultProtectedEnvironments = process.env.PROTECTED_ENVIRONMENTS
-    ? JSON.parse(process.env.PROTECTED_ENVIRONMENTS)
-    : ['production', 'staging'];
-
   /**
    *
    * @param {Object} [options={}] The options to configure the application
@@ -69,6 +23,7 @@ class App {
    * @param {String[]} [options.protectedEnvironments=[]] Sets the protected environments in wich the securities measures will be applied
    */
   constructor(options = {}) {
+    this.setProperties();
     // Setting default cors options
     options.cors = Object.assign(
       {},
@@ -94,6 +49,56 @@ class App {
     this.configure(options);
   }
 
+  /**
+   * Defines the class this. properties for the Application
+   */
+  setProperties() {
+    /**
+     * @name app
+     * @type {Express.Application}
+     * @description The actual Express App that will handle requests
+     */
+    this.app = null;
+
+    /**
+     * @name defaultAllowedMethods
+     * @type {String[]}
+     * @default ['OPTIONS','GET','POST','PUT','PATCH','DELETE']
+     * @description The app's default allowed HTTP Methods in case CORS is enabled through options (DEFAULTS TO TRUE)
+     */
+    this.defaultAllowedMethods = process.env.ALLOWED_HTTP_METHODS
+      ? JSON.parse(process.env.ALLOWED_HTTP_METHODS)
+      : ['OPTIONS', 'GET', 'POST', 'PUT', 'PATCH', 'DELETE'];
+
+    /**
+     * @name defaultAllowedHeaders
+     * @type {String[]}
+     * @default ['Origin','X-Requested-With','Content-Type','Accept','Authorization','Needed-Permissions','RequestID']
+     * @description The app's default allowed Headers in case CORS is enabled through options (DEFAULTS TO TRUE)
+     */
+    this.defaultAllowedHeaders = process.env.ALLOWED_HTTP_HEADERS
+      ? JSON.parse(process.env.ALLOWED_HTTP_HEADERS)
+      : [
+        'Origin',
+        'X-Requested-With',
+        'Content-Type',
+        'Accept',
+        'Authorization',
+        'Needed-Permissions',
+        'RequestID'
+      ];
+
+    /**
+     * @name defaultProtectedEnvironments
+     * @type {String[]}
+     * @default ['production','staging']
+     * @description The app's default environments in which secure precautions should be taken
+     */
+    this.defaultProtectedEnvironments = process.env.PROTECTED_ENVIRONMENTS
+      ? JSON.parse(process.env.PROTECTED_ENVIRONMENTS)
+      : ['production', 'staging'];
+  }
+
   configure(options) {
     this.registerLogger();
     if (options.mode === 'worker') this.setAsWorker();
@@ -112,7 +117,7 @@ class App {
    */
   addMiddleware(...middlewares) {
     for (let middleware of middlewares) {
-      if (typeof middleware === 'array') {
+      if (typeof middleware === 'object' && middleware.length > 0) {
         middleware.map((middleware) => middlewares.push(middleware));
         continue;
       }
@@ -206,4 +211,4 @@ class App {
   }
 }
 
-export default App;
+module.exports = exports = App;

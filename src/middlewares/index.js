@@ -1,7 +1,4 @@
-import requestIndentifier from './requestIdentifier';
-import workerIdentifier from './workerIdentifier';
+var middlewares = (exports = module.exports = {});
 
-const middlewares = exports;
-
-middlewares.requestIndentifier = requestIndentifier;
-middlewares.workerIdentifier = workerIdentifier;
+middlewares.requestIndentifier = require('./requestIndentifier.js');
+middlewares.workerIdentifier = require('./workerIdentifier.js');
