@@ -1,8 +1,19 @@
 const skeleton = exports;
 const App = require('./app');
 
+/** Main Application contructor */
 skeleton.App = App;
 
-skeleton.version = require('./../package.json').version;
+var packageJSON = require('./../package.json');
 
-skeleton.author = 'VIMGAS <victormoraesgs@hotmail.com>';
+/** Package Version */
+skeleton.version = packageJSON.version;
+
+/** Package Author */
+skeleton.author = packageJSON.author;
+
+/** Middlewares */
+skeleton.middlewares = require('./middlewares');
+
+/** API Logger */
+skeleton.logger = require('./logger');

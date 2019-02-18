@@ -1,5 +1,5 @@
 {
-  "name": "@coobo/service-skeleton",
+  "name": "@coobo/skeleton",
   "version": "0.0.1-alpha",
   "description": "The base for every microservice running inside spendfy's infrastructure (NodeJS)",
   "main": "src/app.js",
