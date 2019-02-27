@@ -131,10 +131,10 @@
     lodash "^4.17.11"
     to-fast-properties "^2.0.0"
 
-"@coobo/spendfy-logger@^0.0.3-alpha":
-  version "0.0.3-alpha"
-  resolved "https://registry.yarnpkg.com/@coobo/spendfy-logger/-/spendfy-logger-0.0.3-alpha.tgz#e633f68d642161d56c4aa72be6a2805ab1cf8c57"
-  integrity sha512-LaP+4yTf1L8EcZMjf+xo/6ycGlt3xJ29cCfoRd2yFM4HURvGpEp6G8X4DgRFZFWgG+oxoRimtQDxqVoIb/i9XQ==
+"@coobo/spendfy-logger@0.0.6-alpha":
+  version "0.0.6-alpha"
+  resolved "https://registry.yarnpkg.com/@coobo/spendfy-logger/-/spendfy-logger-0.0.6-alpha.tgz#ef295d25fe0a60aee79399e5ecba401d9440378c"
+  integrity sha512-+3o6ae3Iik3aoi3brjzT9+VTBshvhvyq4epGdz4PYJJ++FSRa6B2bn4EnSOGv+sk2DmhKYjr8pn8/acQJW1AwA==
   dependencies:
     express-winston "^3.1.0"
     winston "^3.2.1"
