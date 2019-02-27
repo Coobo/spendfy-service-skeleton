@@ -72,7 +72,27 @@ const options = {
     })
   },
   testing: {
-    winstonInstance: null
+    winstonInstance: loggers.api,
+    expressFormat: false,
+    msg: '{{req.url}}: {{res.statusCode}} in {{res.responseTime}}ms ',
+    level: (req, res) => {
+      return req.method;
+    },
+    colorize: true,
+    meta: true,
+    requestWhitelist: [
+      'url',
+      'headers',
+      'method',
+      'httpVersion',
+      'originalUrl',
+      'query',
+      'isAuthenticated'
+    ],
+    dynamicMeta: (req, res) => ({
+      user: req.user ? req.user.id : null,
+      WorkerID: res.get('WorkerID') || null
+    })
   }
 };
 
