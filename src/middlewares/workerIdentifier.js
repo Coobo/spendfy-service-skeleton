@@ -7,7 +7,7 @@
  * @middleware
  */
 function workerIdentifier(req, res, next) {
-  res.header('WorkerID', process.env.WORKER_ID || 1);
+  res.header('WorkerId', process.env.WORKER_ID || 1);
   return next();
 }
 

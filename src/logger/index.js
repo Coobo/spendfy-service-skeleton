@@ -1,12 +1,12 @@
-var expressWinston = require('express-winston');
 var loggers = require('@coobo/spendfy-logger');
+var expressWinston = loggers.expressLogger;
 
 const options = {
   development: {
     winstonInstance: loggers.api,
     expressFormat: false,
     msg: '{{req.url}}: {{res.statusCode}} in {{res.responseTime}}ms ',
-    level: (req, res) => {
+    level: (req) => {
       return req.method;
     },
     colorize: true,
@@ -22,14 +22,15 @@ const options = {
     ],
     dynamicMeta: (req, res) => ({
       user: req.user ? req.user.id : null,
-      WorkerID: res.get('WorkerID') || null
+      WorkerId: res.get('WorkerId') || null,
+      RequestId: res.get('RequestId') || null
     })
   },
   staging: {
     winstonInstance: loggers.api,
     expressFormat: false,
     msg: '{{req.url}}: {{res.statusCode}} in {{res.responseTime}}ms ',
-    level: (req, res) => {
+    level: (req) => {
       return req.method;
     },
     colorize: true,
@@ -45,14 +46,15 @@ const options = {
     ],
     dynamicMeta: (req, res) => ({
       user: req.user ? req.user.id : null,
-      WorkerID: res.get('WorkerID') || null
+      WorkerId: res.get('WorkerId') || null,
+      RequestId: res.get('RequestId') || null
     })
   },
   production: {
     winstonInstance: loggers.api,
     expressFormat: false,
     msg: '{{req.url}}: {{res.statusCode}} in {{res.responseTime}}ms ',
-    level: (req, res) => {
+    level: (req) => {
       return req.method;
     },
     colorize: true,
@@ -68,14 +70,15 @@ const options = {
     ],
     dynamicMeta: (req, res) => ({
       user: req.user ? req.user.id : null,
-      WorkerID: res.get('WorkerID') || null
+      WorkerId: res.get('WorkerId') || null,
+      RequestId: res.get('RequestId') || null
     })
   },
   testing: {
     winstonInstance: loggers.api,
     expressFormat: false,
     msg: '{{req.url}}: {{res.statusCode}} in {{res.responseTime}}ms ',
-    level: (req, res) => {
+    level: (req) => {
       return req.method;
     },
     colorize: true,
@@ -91,7 +94,8 @@ const options = {
     ],
     dynamicMeta: (req, res) => ({
       user: req.user ? req.user.id : null,
-      WorkerID: res.get('WorkerID') || null
+      WorkerId: res.get('WorkerId') || null,
+      RequestId: res.get('RequestId') || null
     })
   }
 };

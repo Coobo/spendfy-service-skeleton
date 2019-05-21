@@ -10,8 +10,8 @@ var uuid = require('uuid/v4');
  * @middleware
  */
 function requestIdentifier(req, res, next) {
-  res.header('RequestID', req.get('RequestID') || uuid());
-  req.identifier = res.get('RequestID');
+  res.header('RequestId', req.get('RequestId') || uuid());
+  req.identifier = res.get('RequestId');
   return next();
 }
 
