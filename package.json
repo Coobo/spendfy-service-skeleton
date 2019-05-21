@@ -17,12 +17,11 @@
     "uuid": "^3.3.2"
   },
   "devDependencies": {
-    "eslint": "^5.14.0",
-    "jest": "^24.1.0",
-    "nodemon": "^1.18.10",
-    "prettier": "^1.16.4",
-    "rimraf": "^2.6.3",
-    "superagent": "5.0.5",
+    "eslint": "^5.16.0",
+    "jest": "^24.8.0",
+    "nodemon": "^1.19.0",
+    "prettier": "^1.17.1",
+    "superagent": "^5.0.5",
     "supertest": "4.0.2"
   },
   "scripts": {
