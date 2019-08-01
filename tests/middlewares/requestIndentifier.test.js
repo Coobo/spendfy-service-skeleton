@@ -1,3 +1,4 @@
+process.env.NODE_ENV = 'testing';
 var request = require('supertest');
 var App = require('./../../src/app.js');
 
