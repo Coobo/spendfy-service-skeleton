@@ -1,6 +1,6 @@
 {
   "name": "@coobo/skeleton",
-  "version": "1.0.0-a",
+  "version": "1.0.0",
   "description": "The base for every microservice running inside spendfy's infrastructure (NodeJS)",
   "main": "src/app.js",
   "repository": "git@github.com:Coobo/spendfy-service-skeleton.git",
