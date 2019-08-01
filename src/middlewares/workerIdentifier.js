@@ -7,7 +7,12 @@
  * @middleware
  */
 function workerIdentifier(req, res, next) {
-    res.header('WorkerId', process.env.WORKER_ID || 1);
+    let workerId = 0;
+    if (process.env.WORKER_ID === 0 || process.env.WORKER_ID)
+        workerId = process.env.WORKER_ID;
+    if (process.env.pm_id === 0 || process.env.pm_id)
+        workerId = process.env.pm_id;
+    res.header('WorkerId', workerId);
     return next();
 }
 

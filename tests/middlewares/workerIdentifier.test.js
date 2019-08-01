@@ -3,14 +3,14 @@ var request = require('supertest');
 var App = require('./../../src/app.js');
 
 describe('Worker Identifier Middleware', () => {
-    it('Should add the workerid 1 to the Response', async (done) => {
+    it('Should add the workerid 0 to the Response', async (done) => {
         var application = new App({
             enableLogger: false,
             mode: 'worker'
         });
         const response = await request(application).get('/status');
 
-        expect(response.headers.workerid).toBe('1');
+        expect(response.headers.workerid).toBe('0');
         done();
     });
 
