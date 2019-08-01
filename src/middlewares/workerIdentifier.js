@@ -7,8 +7,8 @@
  * @middleware
  */
 function workerIdentifier(req, res, next) {
-  res.header('WorkerId', process.env.WORKER_ID || 1);
-  return next();
+    res.header('WorkerId', process.env.WORKER_ID || 1);
+    return next();
 }
 
 module.exports = exports = workerIdentifier;

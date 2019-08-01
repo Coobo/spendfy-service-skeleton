@@ -1,4 +1,4 @@
-var uuid = require('uuid/v4');
+let uuid = require('uuid/v4');
 
 /**
  * Tries to get the RequestID from the incoming request. If none is provided, create one from uuid v4.
@@ -10,9 +10,9 @@ var uuid = require('uuid/v4');
  * @middleware
  */
 function requestIdentifier(req, res, next) {
-  res.header('RequestId', req.get('RequestId') || uuid());
-  req.identifier = res.get('RequestId');
-  return next();
+    res.header('RequestId', req.get('RequestId') || uuid());
+    req.identifier = res.get('RequestId');
+    return next();
 }
 
 module.exports = exports = requestIdentifier;

@@ -4,7 +4,7 @@ const App = require('./app');
 /** Main Application contructor */
 skeleton.App = App;
 
-var packageJSON = require('./../package.json');
+let packageJSON = require('./../package.json');
 
 /** Package Version */
 skeleton.version = packageJSON.version;
