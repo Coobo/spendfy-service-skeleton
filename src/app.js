@@ -2,6 +2,7 @@ let express = require('express');
 let bodyParser = require('body-parser');
 let compression = require('compression');
 let cors = require('cors');
+let helmet = require('helmet');
 let fileUpload = require('express-fileupload');
 let middlewares = require('./middlewares');
 let logger = require('./logger');
@@ -21,7 +22,8 @@ class App {
      * @param {String[]} [options.cors.allowedHeaders=[]] Sets CORS allowed Headers
      * @param {String[]} [options.cors.allowedMethods=[]] Sets CORS allowed Methods
      * @param {Boolean} [options.enableProxy=true] Enables Trust proxy directives
-     * @param {Boolean} [options.enableLogger=true] Enables the @coobo/spendft-logger default logger for API Express
+     * @param {Boolean} [options.enableLogger=true] Enables the @coobo/spendfy-logger default logger for API Express
+     * @param {Boolean} [options.enableHelmet=true] Enables the helmet security directives
      * @param {String[]} [options.protectedEnvironments=[]] Sets the protected environments in wich the securities measures will be applied
      * @returns {Express.Application} The express Application fully configured
      */
@@ -45,6 +47,7 @@ class App {
                 enableCors: true,
                 enableProxy: true,
                 enableLogger: true,
+                enableHelmet: true,
                 protectedEnvironments: []
             },
             options
@@ -115,6 +118,7 @@ class App {
         if (options.enableCompression === true) this.setCompression();
         if (options.enableUpload === true) this.setUpload();
         if (options.enableProxy === true) this.setProxy();
+        if (options.enableHelmet === true) this.setHelmetProtection();
         this.setProtection(options.protectedEnvironments);
         this.app.use(bodyParser.raw());
         this.app.use(bodyParser.text());
@@ -219,6 +223,14 @@ class App {
         ) {
             this.app.disable('x-powered-by');
         }
+    }
+
+    /**
+     * Sets the helmet protection definition for the Application.
+     * @returns {void}
+     */
+    setHelmetProtection() {
+        this.app.use(helmet());
     }
 
     /**
