@@ -3,7 +3,7 @@
   "version": "0.0.1-alpha",
   "description": "Application-Wide Configuration.",
   "main": "src/index.js",
-  "repository": "git@github.com:Coobo/spendfy-service-skeleton/@coobo/config.git",
+  "repository": "git@github.com:Coobo/spendfy-service-skeleton.git",
   "author": "VIMGAS<victormoraesgs@gmail.com>",
   "license": "MIT",
   "private": false,
