@@ -3,9 +3,17 @@ const mergeWith = require('lodash.mergewith');
 const set = require('lodash.set');
 
 class Config {
-  constructor(container) {
-    const requireAll = container.resolve('requireAll');
-    const configPath = container.resolve('configPath');
+  /**
+   * Constructs the Config class
+   *
+   * @param {object} DependencyInjection
+   * @param {import('@coobo/di').Container} DependencyInjection.Container
+   * @param {import('@coobo/app')} DependencyInjection.Application
+   */
+  constructor({ Container, Application }) {
+    /** @type {import('@coobo/di').requireAll} */
+    const requireAll = Container.resolve('requireAll');
+    const configPath = Application.configPath();
     this._config = requireAll(configPath);
   }
 
