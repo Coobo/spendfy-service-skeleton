@@ -1,6 +1,6 @@
 {
   "name": "@coobo/di",
-  "version": "0.0.6-alpha",
+  "version": "0.0.7-alpha",
   "description": "Dependency injection container",
   "main": "src/index.js",
   "repository": "git@github.com:Coobo/spendfy-service-skeleton.git",

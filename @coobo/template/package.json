@@ -1,18 +1,24 @@
 {
-    "name": "@coobo/srvr",
-    "version": "0.0.2-alpha",
-    "description": "Express Server",
-    "main": "dist/start.js",
-    "repository": "git@github.com:Coobo/spendfy-service-skeleton.git",
-    "author": "VIMGAS<victormoraesgs@gmail.com>",
-    "license": "MIT",
-    "private": false,
-    "devDependencies": {},
-    "dependencies": {
-        "@coobo/app": "0.0.3-alpha",
-        "@coobo/config": "0.0.4-alpha",
-        "@coobo/db": "^0.0.3-alpha",
-        "@coobo/di": "0.0.6-alpha",
-        "@coobo/srvr": "0.0.6-alpha"
-    }
+  "name": "@coobo/srvr",
+  "version": "0.0.2-alpha",
+  "description": "Express Server",
+  "main": "dist/start.js",
+  "repository": "git@github.com:Coobo/spendfy-service-skeleton.git",
+  "author": "VIMGAS<victormoraesgs@gmail.com>",
+  "license": "MIT",
+  "private": false,
+  "scripts": {
+    "dev": "nodemon src/index.js"
+  },
+  "devDependencies": {
+    "nodemon": "^1.19.3"
+  },
+  "dependencies": {
+    "@coobo/app": "0.0.3-alpha",
+    "@coobo/config": "0.0.4-alpha",
+    "@coobo/db": "^0.0.3-alpha",
+    "@coobo/di": "0.0.6-alpha",
+    "@coobo/srvr": "0.0.6-alpha",
+    "sucrase": "^3.10.1"
+  }
 }

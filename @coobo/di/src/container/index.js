@@ -30,4 +30,4 @@ class Container {
   }
 }
 
-module.exports = Container;
+module.exports = new Container();
