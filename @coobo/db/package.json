@@ -1,6 +1,6 @@
 {
   "name": "@coobo/db",
-  "version": "0.0.2-alpha",
+  "version": "0.0.3-alpha",
   "description": "Database abstraction.",
   "main": "src/index.js",
   "repository": "git@github.com:Coobo/spendfy-service-skeleton.git",
