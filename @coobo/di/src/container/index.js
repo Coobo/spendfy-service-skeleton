@@ -1,28 +1,20 @@
-const container = require('awilix');
-const requireAll = require('../utils/requireAll');
+const awilix = require('awilix');
+
 const esmRequire = require('../utils/esmRequire');
 const esmResolver = require('../utils/esmResolver');
+const requireAll = require('../utils/requireAll');
 
 /**
  * A class wrapper around awilix container.
  */
 class Container {
   constructor() {
-    this._awilix = container;
+    this._awilix = awilix;
     this._container = this._awilix.createContainer();
 
     this._container.register('requireAll', { resolve: () => requireAll });
     this._container.register('esmRequire', { resolve: () => esmRequire });
     this._container.register('esmResolver', { resolve: () => esmResolver });
-
-    this._container.register({
-      configPath: { resolve: () => 'src/config' },
-      servicesPath: { resolve: () => 'src/services' },
-      domainsPath: { resolve: () => 'src/domains' },
-      controllersTestRegex: { resolve: () => /(.*)Controller\.js/i },
-      modelsTestRegex: { resolve: () => /(.*)Model\.js/i },
-      validatorsTestRegex: { resolve: () => /(.*)Validator\.js/i },
-    });
 
     return this._container;
   }

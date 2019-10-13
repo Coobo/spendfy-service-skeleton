@@ -21,8 +21,8 @@ module.exports = function requireAll(options) {
   const resolve = options.resolve || identity;
   const map = options.map || identity;
 
-  function excludeDirectory(dirname) {
-    return !recursive || (excludeDirs && dirname.match(excludeDirs));
+  function excludeDirectory(dirname2) {
+    return !recursive || (excludeDirs && dirname2.match(excludeDirs));
   }
 
   function filterFile(filename) {
