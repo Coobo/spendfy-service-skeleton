@@ -1,3 +1,5 @@
-const server = require('./app');
+import app from './app';
 
-server.boot();
+console.log(use('Config'));
+
+export default app.boot();

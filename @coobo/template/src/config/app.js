@@ -1,6 +1,6 @@
-module.exports = ({ Env }) => ({
-    app: {
-        name: Env.get('APP_NAME'),
-        port: Env.get('APP_PORT')
-    }
-});
+export default {
+    name: Env.getOrFail('APP_NAME'),
+    port: Env.getOrFail('APP_PORT'),
+    url: Env.getOrFail('APP_URL'),
+    secret: Env.getOrFail('APP_SECRET')
+};

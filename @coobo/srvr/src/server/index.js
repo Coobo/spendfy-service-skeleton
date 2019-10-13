@@ -31,6 +31,8 @@ class Server {
       requestIdentifier: InternalRequestIdentifierMiddleware,
     };
 
+    this._setConfigDefaults();
+
     this._enableCompression();
     this._ensureSecurityStandards();
     this._enableProxy();
@@ -51,7 +53,7 @@ class Server {
    * @returns {express.Server}
    */
   boot() {
-    return this.server.listen(this._config.get('app.port', 3000));
+    return this._express.listen(this._config.get('app.port', 3000));
   }
 
   /**

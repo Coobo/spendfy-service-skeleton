@@ -21,7 +21,7 @@ class Config {
       dirname: configPath,
       resolve: mod => {
         mod = esmResolver(mod);
-        if (typeof mod === 'function') mod = mod(container.cradle);
+        if (typeof mod === 'function') mod = mod(Container.cradle);
         return mod;
       },
     });

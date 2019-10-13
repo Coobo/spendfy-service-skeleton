@@ -7,10 +7,10 @@
   resolved "https://registry.yarnpkg.com/@coobo/app/-/app-0.0.3-alpha.tgz#3592305f6144bbeea65f4c4adda0d2efc34ef6e3"
   integrity sha512-UkO/tdVy6s2Y4ZyV0kvnsoQQ+LDXsfxuvX9oubqttoHEG2tsYOliF5fMtbI1UE3LzwMkyogC2cvvXvLjUAsBag==
 
-"@coobo/config@0.0.4-alpha":
-  version "0.0.4-alpha"
-  resolved "https://registry.yarnpkg.com/@coobo/config/-/config-0.0.4-alpha.tgz#d4c3dc389764fcf03514a4f2c44ad3fad442b045"
-  integrity sha512-nY+aMJLuLi9dGePa8elLwTMa0Dy0j04HH6f4yUUpB5kHPKsPN8+4Akc+XZ/UC/iTk7iIhjbmwpQWjXfEoIWdeg==
+"@coobo/config@0.0.6-alpha":
+  version "0.0.6-alpha"
+  resolved "https://registry.yarnpkg.com/@coobo/config/-/config-0.0.6-alpha.tgz#79e4b4bc92a9119e158f8a3fa37c2d2871199ed6"
+  integrity sha512-HF4gdhKWokGqfK2yxcENiHekDWNpDyzuMeOHZIKuUIp8GoDK9H3IHbK06yaZhB64eqZj3UGacg5mnmztAvUDYg==
   dependencies:
     dotenv "^8.1.0"
     lodash.get "^4.4.2"
@@ -26,17 +26,17 @@
     install "^0.13.0"
     mongoose "^5.7.4"
 
-"@coobo/di@0.0.6-alpha":
-  version "0.0.6-alpha"
-  resolved "https://registry.yarnpkg.com/@coobo/di/-/di-0.0.6-alpha.tgz#09e9ce2870efcc3f7d288d3349a4678dfb7bfdb9"
-  integrity sha512-TM1pIguTd6j4D9YxoBqIqJWB6H+qi2FbvW+oyc7oZ9x4/XMK5d67z3IokTkgpvJ/GOnPYmk0IKcJ9Z90LKZIsQ==
+"@coobo/di@0.0.7-alpha":
+  version "0.0.7-alpha"
+  resolved "https://registry.yarnpkg.com/@coobo/di/-/di-0.0.7-alpha.tgz#aa02edfb6e164894dd2a6b6a6414359f82caf348"
+  integrity sha512-9uKrGXYVvVjcOWtv5ntiyAQf+r4XlF2HOA0roAptiNS78IRTwj+LmGO8cEq+SwzvGobIVTWPs3KQN8uA6Lbd9w==
   dependencies:
     awilix "^4.2.2"
 
-"@coobo/srvr@0.0.6-alpha":
-  version "0.0.6-alpha"
-  resolved "https://registry.yarnpkg.com/@coobo/srvr/-/srvr-0.0.6-alpha.tgz#dcc8cd1fca663c8daaa2a769e0b7eaca8df5839f"
-  integrity sha512-pB8eTnUIsH60hhDW233R93Qb/ZVBsypmWnFnehPL/eaEt5CGc0KVP4oVDO+Gz5j3Z+mNcRJsa010C0v/HPWJ3w==
+"@coobo/srvr@0.0.8-alpha":
+  version "0.0.8-alpha"
+  resolved "https://registry.yarnpkg.com/@coobo/srvr/-/srvr-0.0.8-alpha.tgz#a690b77121e4e221bb0eb833435610d8c55c67dd"
+  integrity sha512-u8mmtho15FtQBdDQl/eOVEkWQ/LUr5UKnL4ovaFV6P3GAKiAt0SGHtY83nVzrt8ANyP+n4RcqJAMv15oBjbsDg==
   dependencies:
     compression "^1.7.4"
     cors "^2.8.5"
