@@ -12,6 +12,7 @@ class Container {
     this._awilix = awilix;
     this._container = this._awilix.createContainer();
 
+    this._container.register({ Container: this._container });
     this._container.register('requireAll', { resolve: () => requireAll });
     this._container.register('esmRequire', { resolve: () => esmRequire });
     this._container.register('esmResolver', { resolve: () => esmResolver });
