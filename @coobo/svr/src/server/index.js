@@ -1,0 +1,191 @@
+const compression = require('compression');
+const cors = require('cors');
+const express = require('express');
+const fileUpload = require('express-fileupload');
+const helmet = require('helmet');
+
+const InternalExceptionHandlerMiddleware = require('../middlewares/exception-handler');
+const InternalRequestIdentifierMiddleware = require('../middlewares/request-identifier');
+
+/**
+ * An Express server wrapper.
+ *
+ * @class
+ * @singleton
+ *
+ * @group Application
+ * @alias Server
+ */
+class Server {
+  /**
+   * @constructor
+   *
+   * @param {object} DependencyInjection
+   * @param {import('@coobo/config').Config} DependencyInjection.Config
+   */
+  constructor({ Config }) {
+    this._config = Config;
+    this._express = express();
+    this._middlewares = {
+      exceptionHandler: InternalExceptionHandlerMiddleware,
+      requestIdentifier: InternalRequestIdentifierMiddleware,
+    };
+
+    this._enableCompression();
+    this._ensureSecurityStandards();
+    this._enableProxy();
+    this._enableCORS();
+    this._enableRequestParsers();
+
+    this.use(this._middlewares.exceptionHandler);
+    this.use(this._middlewares.requestIdentifier);
+    this._enableStatusRoute();
+  }
+
+  /**
+   * Boots up the server
+   *
+   * @method boot
+   * @public
+   *
+   * @returns {express.Server}
+   */
+  boot() {
+    return this.server.listen(this._config.get('app.port', 3000));
+  }
+
+  /**
+   * A proxy method for express.use
+   *
+   * @method use
+   * @public
+   *
+   * @param {function[]} middlewares
+   *
+   * @returns {void}
+   */
+  use(...middlewares) {
+    middlewares.forEach(middleware => this._express.use(middleware));
+  }
+
+  _setConfigDefaults() {
+    this.config.defaults('server', {
+      proxy: true,
+      compression: true,
+      cors: {
+        enabled: true,
+        origins: ['localhost', '127.0.0.1'],
+        methods: ['OPTIONS', 'GET', 'POST', 'PUT', 'PATCH', 'DELETE'],
+        allowedHeaders: [
+          'Origin',
+          'X-Requested-With',
+          'Content-Type',
+          'Accept',
+          'Authorization',
+          'Needed-Permissions',
+          'RequestID',
+        ],
+      },
+      req: { types: ['json'] },
+    });
+  }
+
+  /**
+   * Ensures the security standards and applies helmet
+   *
+   * @method _ensureSecurityStandards
+   * @private
+   *
+   * @returns {void}
+   */
+  _ensureSecurityStandards() {
+    this._express.disable('x-powered-by');
+    this.use(helmet());
+  }
+
+  /**
+   * Enables the proxy trust for the server
+   *
+   * @method _enableProxy
+   * @private
+   *
+   * @returns {void}
+   */
+  _enableProxy() {
+    if (this._config.get('server.proxy') === true) {
+      this._express.set('trust proxy', true);
+      this._express.set('trust proxy', 'loopback');
+    }
+  }
+
+  /**
+   * Enables a `/status` route.
+   *
+   * @method _enableStatusRoute
+   * @private
+   *
+   * @returns{void}
+   */
+  _enableStatusRoute() {
+    this.express.get('/status', (req, res) => res.sendStatus(200));
+  }
+
+  /**
+   * Enabled GZIP compression for all routes.
+   *
+   * @method _enableCompression
+   * @private
+   *
+   * @returns {void}
+   */
+  _enableCompression() {
+    if (this.config.get('server.compression')) this.use(compression());
+  }
+
+  /**
+   * Enabled CORS for all routes.
+   *
+   * @method _enableCors
+   * @private
+   *
+   * @returns {void}
+   */
+  _enableCors() {
+    if (this.config.get('server.cors.enabled', true)) {
+      const options = {
+        origin: this.config.get('server.cors.origins'),
+        methods: this.config.get('server.cors.methods'),
+        allowedHeaders: this.config.get('server.cors.allowedHeaders'),
+      };
+      this.express.options('*', cors(options));
+      this.use(cors(options));
+    }
+  }
+
+  /**
+   * Enables requests parsers.
+   *
+   * @method _enableRequestParsers
+   * @private
+   *
+   * @returns {void}
+   */
+  _enableRequestParsers() {
+    const config = this.config.get('server.req.types', ['json']);
+
+    if (config.includes('raw')) this.use(express.raw());
+    if (config.includes('text')) this.use(express.text());
+    if (config.includes('urlencoded'))
+      this.use(
+        express.urlencoded({
+          limit: '50mb',
+          extended: true,
+          parameterLimit: 50000,
+        }),
+      );
+    if (config.includes('json')) this.use(express.json({ limit: '50mb' }));
+    if (config.includes('file')) this.use(fileUpload());
+  }
+}
+
+module.exports = Server;
