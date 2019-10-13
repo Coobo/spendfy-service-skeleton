@@ -1,4 +1,10 @@
-const awilix = require('awilix');
+const {
+  createContainer,
+  asClass,
+  asValue,
+  asFunction,
+  aliasTo,
+} = require('awilix');
 
 const esmRequire = require('../utils/esmRequire');
 const esmResolver = require('../utils/esmResolver');
@@ -9,13 +15,16 @@ const requireAll = require('../utils/requireAll');
  */
 class Container {
   constructor() {
-    this._awilix = awilix;
-    this._container = this._awilix.createContainer();
+    this._container = createContainer();
 
-    this._container.register({ Container: this._container });
-    this._container.register('requireAll', { resolve: () => requireAll });
-    this._container.register('esmRequire', { resolve: () => esmRequire });
-    this._container.register('esmResolver', { resolve: () => esmResolver });
+    this._container.register({ Container: asValue(this._container) });
+    this._container.register('requireAll', asValue(requireAll));
+    this._container.register('esmRequire', asValue(esmRequire));
+    this._container.register('esmResolver', asValue(esmResolver));
+    this._container.register('asClass', asValue(asClass));
+    this._container.register('asValue', asValue(asValue));
+    this._container.register('asFunction', asValue(asFunction));
+    this._container.register('aliasTo', asValue(aliasTo));
 
     return this._container;
   }

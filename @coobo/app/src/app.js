@@ -17,15 +17,15 @@ class Application {
   }
 
   configPath() {
-    return path.join(this.appRoot, 'config');
+    return path.join(this.appRoot, 'src/config');
   }
 
   servicesPath() {
-    return path.join(this.appRoot, 'services');
+    return path.join(this.appRoot, 'src/services');
   }
 
   domainsPath() {
-    return path.join(this.appRoot, 'domains');
+    return path.join(this.appRoot, 'src/domains');
   }
 
   controllersTest() {

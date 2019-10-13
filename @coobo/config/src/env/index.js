@@ -64,12 +64,12 @@ class Env {
       process.env.ENV_SILENT === 'true',
     );
 
-    let testEnvContent = '';
+    let testEnvContents = '';
     if (process.env.NODE_ENV === 'testing') {
-      testEnvContent = this._loadFile(join(appRoot, '.env.testing'), true);
+      testEnvContents = this._loadFile(join(appRoot, '.env.testing'), true);
     }
 
-    return { testEnvContent, envContents };
+    return { testEnvContents, envContents };
   }
 
   /**

@@ -69,7 +69,7 @@ class Server {
   }
 
   _setConfigDefaults() {
-    this.config.defaults('server', {
+    this._config.defaults('server', {
       proxy: true,
       compression: true,
       cors: {
@@ -127,7 +127,7 @@ class Server {
    * @returns{void}
    */
   _enableStatusRoute() {
-    this.express.get('/status', (req, res) => res.sendStatus(200));
+    this._express.get('/status', (req, res) => res.sendStatus(200));
   }
 
   /**
@@ -139,25 +139,25 @@ class Server {
    * @returns {void}
    */
   _enableCompression() {
-    if (this.config.get('server.compression')) this.use(compression());
+    if (this._config.get('server.compression')) this.use(compression());
   }
 
   /**
    * Enabled CORS for all routes.
    *
-   * @method _enableCors
+   * @method _enableCORS
    * @private
    *
    * @returns {void}
    */
-  _enableCors() {
-    if (this.config.get('server.cors.enabled', true)) {
+  _enableCORS() {
+    if (this._config.get('server.cors.enabled', true)) {
       const options = {
-        origin: this.config.get('server.cors.origins'),
-        methods: this.config.get('server.cors.methods'),
-        allowedHeaders: this.config.get('server.cors.allowedHeaders'),
+        origin: this._config.get('server.cors.origins'),
+        methods: this._config.get('server.cors.methods'),
+        allowedHeaders: this._config.get('server.cors.allowedHeaders'),
       };
-      this.express.options('*', cors(options));
+      this._express.options('*', cors(options));
       this.use(cors(options));
     }
   }
@@ -171,7 +171,7 @@ class Server {
    * @returns {void}
    */
   _enableRequestParsers() {
-    const config = this.config.get('server.req.types', ['json']);
+    const config = this._config.get('server.req.types', ['json']);
 
     if (config.includes('raw')) this.use(express.raw());
     if (config.includes('text')) this.use(express.text());
