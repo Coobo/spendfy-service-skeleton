@@ -11,13 +11,20 @@ class Config {
    * @param {import('@coobo/di').Container} DependencyInjection.Container
    * @param {import('@coobo/app')} DependencyInjection.Application
    */
-  constructor({ Container, Application, asClass, requireAll }) {
+  constructor({ Container, Application, asClass, requireAll, esmResolver }) {
     /** @type {import('@coobo/di').requireAll} */
     Container.register({
       Env: asClass(Env),
     });
     const configPath = Application.configPath();
-    this._config = requireAll(configPath);
+    this._config = requireAll({
+      dirname: configPath,
+      resolve: mod => {
+        mod = esmResolver(mod);
+        if (typeof mod === 'function') mod = mod(container.cradle);
+        return mod;
+      },
+    });
   }
 
   get(key, defaultValue = null) {
