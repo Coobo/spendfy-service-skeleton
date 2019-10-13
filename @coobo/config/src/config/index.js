@@ -1,6 +1,7 @@
 const get = require('lodash.get');
 const mergeWith = require('lodash.mergewith');
 const set = require('lodash.set');
+const Env = require('../env');
 
 class Config {
   /**
@@ -12,6 +13,10 @@ class Config {
    */
   constructor({ Container, Application }) {
     /** @type {import('@coobo/di').requireAll} */
+    Container.register({
+      Env: { resolve: c => new Env({ appRoot: c.resolve('appRoot') }) },
+    });
+    Container.resolve('Env');
     const requireAll = Container.resolve('requireAll');
     const configPath = Application.configPath();
     this._config = requireAll(configPath);
