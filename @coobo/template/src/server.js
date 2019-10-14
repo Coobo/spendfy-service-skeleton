@@ -1,5 +1,5 @@
 import app from './app';
 
-console.log(use('Config'));
+// console.log(use('Config'));
 
 export default app.boot();

@@ -2,10 +2,10 @@
 # yarn lockfile v1
 
 
-"@coobo/app@0.0.3-alpha":
-  version "0.0.3-alpha"
-  resolved "https://registry.yarnpkg.com/@coobo/app/-/app-0.0.3-alpha.tgz#3592305f6144bbeea65f4c4adda0d2efc34ef6e3"
-  integrity sha512-UkO/tdVy6s2Y4ZyV0kvnsoQQ+LDXsfxuvX9oubqttoHEG2tsYOliF5fMtbI1UE3LzwMkyogC2cvvXvLjUAsBag==
+"@coobo/app@0.0.6-alpha":
+  version "0.0.6-alpha"
+  resolved "https://registry.yarnpkg.com/@coobo/app/-/app-0.0.6-alpha.tgz#006e8521f9ce09f1b8cae9d737dfc08de3060584"
+  integrity sha512-zb2UUBMKH6M5qSdLHkba0g+0g9U2Gd4TYksE9IstQOouxAHa1UBW6ao5bNEuYK0qqFWzkGfTmRJGtJ1Df1TgGg==
 
 "@coobo/config@0.0.6-alpha":
   version "0.0.6-alpha"
@@ -26,10 +26,10 @@
     install "^0.13.0"
     mongoose "^5.7.4"
 
-"@coobo/di@0.0.7-alpha":
-  version "0.0.7-alpha"
-  resolved "https://registry.yarnpkg.com/@coobo/di/-/di-0.0.7-alpha.tgz#aa02edfb6e164894dd2a6b6a6414359f82caf348"
-  integrity sha512-9uKrGXYVvVjcOWtv5ntiyAQf+r4XlF2HOA0roAptiNS78IRTwj+LmGO8cEq+SwzvGobIVTWPs3KQN8uA6Lbd9w==
+"@coobo/di@0.0.8-alpha":
+  version "0.0.8-alpha"
+  resolved "https://registry.yarnpkg.com/@coobo/di/-/di-0.0.8-alpha.tgz#12b1a16e2465e1016ab57ad98c08813d3bbb9fc0"
+  integrity sha512-anjdSOW7O1HqMde2+CqBFoyHzBmLxsuIZs+0YrmCFspXLDG5ZcV0rHTFU+J2YSwrxI05Oef/CPQuDqJNVKRkKA==
   dependencies:
     awilix "^4.2.2"
 

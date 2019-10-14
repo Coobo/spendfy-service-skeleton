@@ -5,6 +5,7 @@ const Application = require('@coobo/app');
 const Server = require('@coobo/srvr');
 const { Database, Factory, FakeLibrary } = require('@coobo/db');
 
+/** @type {import('@coobo/di').Container} */
 let container = Container;
 
 container.register({ appRoot: asValue(join(__dirname, '../')) });
@@ -19,7 +20,12 @@ container.register({
 });
 
 const env = container.resolve('Env');
+/** @type {@import('@coobo/app')} */
 const App = container.resolve('Application');
+
+App.loadControllers();
+const UserModel = container.resolve('UserModel');
+
 global.App = App;
 global.Env = env;
 global.use = container.resolve;
