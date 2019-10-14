@@ -12,10 +12,6 @@ class Config {
    * @param {import('@coobo/app')} DependencyInjection.Application
    */
   constructor({ Container, Application, asClass, requireAll, esmResolver }) {
-    /** @type {import('@coobo/di').requireAll} */
-    Container.register({
-      Env: asClass(Env),
-    });
     const configPath = Application.configPath();
     this._config = requireAll({
       dirname: configPath,

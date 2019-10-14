@@ -1,9 +1,27 @@
 const fs = require('fs');
 const path = require('path');
+const { Config, Env } = require('@coobo/config');
+const Server = require('@coobo/srvr');
+const { Database, Factory, FakeLibrary } = require('@coobo/db');
 
 class Application {
-  constructor({ appRoot, Container, esmRequire, asClass, asFunction }) {
+  constructor({
+    appRoot,
+    Container,
+    esmRequire,
+    asClass,
+    asFunction,
+    asValue,
+  }) {
     this._container = Container;
+    this._container.register({
+      Config: asClass(Config).singleton(),
+      Env: asClass(Env).singleton(),
+      Server: asClass(Server).singleton(),
+      Database: asFunction(Database).singleton(),
+      Factory: asClass(Factory).singleton(),
+      fake: asValue(FakeLibrary),
+    });
     this._require = esmRequire;
     this._asClass = asClass;
     this._asFunction = asFunction;
@@ -15,6 +33,8 @@ class Application {
     this.package = require(path.join(appRoot, 'package.json'));
     this.version = this.package.version || '0.0.0';
     this.coreVersion = this.package.dependencies['@coobo/app'];
+
+    this.loadControllers();
   }
 
   makePath(...paths) {

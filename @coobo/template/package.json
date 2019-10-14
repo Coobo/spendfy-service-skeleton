@@ -14,7 +14,7 @@
         "nodemon": "^1.19.3"
     },
     "dependencies": {
-        "@coobo/app": "0.0.6-alpha",
+        "@coobo/app": "0.0.12-alpha",
         "@coobo/config": "0.0.6-alpha",
         "@coobo/db": "^0.0.3-alpha",
         "@coobo/di": "0.0.8-alpha",

@@ -1,6 +1,6 @@
 {
   "name": "@coobo/app",
-  "version": "0.0.6-alpha",
+  "version": "0.0.12-alpha",
   "description": "Application",
   "main": "src/index.js",
   "repository": "git@github.com:Coobo/spendfy-service-skeleton.git",
@@ -23,11 +23,9 @@
     "prettier": "^1.18.2",
     "standard-version": "^7.0.0"
   },
-  "dependencies": {},
-  "peerDependencies": {
-    "@coobo/srvr": "*",
-    "@coobo/db": "*",
-    "@coobo/di": "*",
-    "@coobo/config": "*"
+  "dependencies": {
+    "@coobo/config": "^0.0.6-alpha",
+    "@coobo/db": "^0.0.3-alpha",
+    "@coobo/srvr": "^0.0.8-alpha"
   }
 }

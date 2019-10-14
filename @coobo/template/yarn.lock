@@ -2,12 +2,16 @@
 # yarn lockfile v1
 
 
-"@coobo/app@0.0.6-alpha":
-  version "0.0.6-alpha"
-  resolved "https://registry.yarnpkg.com/@coobo/app/-/app-0.0.6-alpha.tgz#006e8521f9ce09f1b8cae9d737dfc08de3060584"
-  integrity sha512-zb2UUBMKH6M5qSdLHkba0g+0g9U2Gd4TYksE9IstQOouxAHa1UBW6ao5bNEuYK0qqFWzkGfTmRJGtJ1Df1TgGg==
+"@coobo/app@0.0.12-alpha":
+  version "0.0.12-alpha"
+  resolved "https://registry.yarnpkg.com/@coobo/app/-/app-0.0.12-alpha.tgz#fd9fb290b06e644f0659b09a5ed6510f787b25bc"
+  integrity sha512-0FJP3w7xKWKtJfuEsMbZ2ZBOL2+K18N3JLSHhl5upsD4plLCsC7Hbex9ODzhapITA52ge4rZnt/fwDDDlHgWcw==
+  dependencies:
+    "@coobo/config" "^0.0.6-alpha"
+    "@coobo/db" "^0.0.3-alpha"
+    "@coobo/srvr" "^0.0.8-alpha"
 
-"@coobo/config@0.0.6-alpha":
+"@coobo/config@0.0.6-alpha", "@coobo/config@^0.0.6-alpha":
   version "0.0.6-alpha"
   resolved "https://registry.yarnpkg.com/@coobo/config/-/config-0.0.6-alpha.tgz#79e4b4bc92a9119e158f8a3fa37c2d2871199ed6"
   integrity sha512-HF4gdhKWokGqfK2yxcENiHekDWNpDyzuMeOHZIKuUIp8GoDK9H3IHbK06yaZhB64eqZj3UGacg5mnmztAvUDYg==
@@ -33,7 +37,7 @@
   dependencies:
     awilix "^4.2.2"
 
-"@coobo/srvr@0.0.8-alpha":
+"@coobo/srvr@0.0.8-alpha", "@coobo/srvr@^0.0.8-alpha":
   version "0.0.8-alpha"
   resolved "https://registry.yarnpkg.com/@coobo/srvr/-/srvr-0.0.8-alpha.tgz#a690b77121e4e221bb0eb833435610d8c55c67dd"
   integrity sha512-u8mmtho15FtQBdDQl/eOVEkWQ/LUr5UKnL4ovaFV6P3GAKiAt0SGHtY83nVzrt8ANyP+n4RcqJAMv15oBjbsDg==
